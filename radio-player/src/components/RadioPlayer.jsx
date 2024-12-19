@@ -1,5 +1,5 @@
 import React from 'react';
-import AudioPlayer from 'react-h5-audio-player';
+import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
 const RadioPlayer = () => {
@@ -18,24 +18,14 @@ const RadioPlayer = () => {
             showJumpControls={false}
             layout="stacked-reverse"
             customProgressBarSection={[]}
-            customControlsSection={["MAIN_CONTROLS", "VOLUME_CONTROLS"]}
+            customControlsSection={[
+              RHAP_UI.MAIN_CONTROLS,
+              RHAP_UI.VOLUME_CONTROLS,
+            ]}
             autoPlayAfterSrcChange={false}
             style={{
               backgroundColor: 'white',
               boxShadow: 'none',
-            }}
-            onError={(e) => {
-              console.error('Error loading audio:', e);
-            }}
-            onPlay={(e) => {
-              console.log('Audio started playing');
-              // Enable background playing
-              if ('mediaSession' in navigator) {
-                navigator.mediaSession.metadata = new MediaMetadata({
-                  title: '102FM Radio',
-                  artist: 'Live Stream',
-                });
-              }
             }}
           />
         </div>
